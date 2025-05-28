@@ -1,14 +1,46 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from 'react';
+import MainAppLayout from '../components/layout/MainAppLayout';
+import FunnelCard from '../components/Dashboard/FunnelCard';
+import SourcesCard from '../components/Dashboard/SourcesCard';
+import LeadsTrackingChart from '../components/Dashboard/LeadsTrackingChart';
+import ReasonsAndDataSummary from '../components/Dashboard/ReasonsAndDataSummary';
 
-const Index = () => {
+/**
+ * LeadsOverviewPage is the main page for displaying leads-related analytics and data.
+ * It assembles various dashboard components like FunnelCard, SourcesCard, LeadsTrackingChart,
+ * and ReasonsAndDataSummary within the MainAppLayout.
+ * 
+ * The page structure follows the requirements for the "Leads Overview" target page,
+ * utilizing a responsive grid layout for cards and charts.
+ */
+const LeadsOverviewPage: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <MainAppLayout>
+      {/* 
+        The MainAppLayout component already provides a flex container with:
+        - padding (p-8)
+        - top margin for the fixed header (mt-[64px])
+        - vertical gap between direct children (gap-8)
+      */}
+
+      {/* First row: Funnel Card and Sources Card */}
+      {/* This div acts as a single child for MainAppLayout's flex container */}
+      {/* It uses a responsive grid: 1 column on small screens, 2 columns on xl screens and up. */}
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+        <FunnelCard />
+        <SourcesCard />
       </div>
-    </div>
+
+      {/* Second row: Leads Tracking Chart (full width) */}
+      {/* This component is a direct child in MainAppLayout's flex container */}
+      <LeadsTrackingChart />
+
+      {/* Third row: Reasons of Lost Leads and Other Data Summary (full width) */}
+      {/* This component is a direct child in MainAppLayout's flex container */}
+      <ReasonsAndDataSummary />
+
+    </MainAppLayout>
   );
 };
 
-export default Index;
+export default LeadsOverviewPage;
